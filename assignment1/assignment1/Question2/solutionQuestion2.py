@@ -1,8 +1,8 @@
-# Name: <replace with your name>
-# ccid: <replace with your ccid>
-# studentId: <replace with your student id>
-# operating system: <replace with your os>
-# python version: <replace with your python version>
+# Name: Nathan Edillon
+# ccid: nedillon
+# studentId: 1826864
+# operating system: Fedora Linux
+# python version: 3.12.6
 
 #Input: The given input string
 #Output: The "clean" version of the input string without characters specified in the problem statement like ?, !, etc
