@@ -9,7 +9,7 @@ inputFolder = os.path.join(os.getcwd(), "assignment1/assignment1/Question2/", "I
 expectedFolder = os.path.join(os.getcwd(), "assignment1/assignment1/Question2/", "Expected") # this too
 outputFolder = os.path.join(os.getcwd(), "Output")
 errorsFolder = os.path.join(os.getcwd(), "Error")
-solutionPath = os.path.join(os.getcwd(), "solutionQuestion2.py")
+solutionPath = os.path.join(os.getcwd(), "assignment1/assignment1/Question2/", "solutionQuestion2.py")
 
 if not os.path.exists(outputFolder):
     os.mkdir(outputFolder)
