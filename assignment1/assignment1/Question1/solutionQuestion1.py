@@ -5,42 +5,53 @@
 # python version: 3.12.6
 
 def verify_local(local):
-    # for each character, evaluate if its ascii code is 
-    # attributed to any of the permitted characters
+    # for each character, evaluate if it's a permitted character
+    result = "Valid"
     for char in local:
         number = ord(char.lower())
-        if number < 97 or number > 122:
-            code = "Invalid"
-            break
-        else:
-            code = "Valid"
-    return code
+        # the range of numbers are all the lowercase numbers in ascii
+        if (number >= 97 and number <= 122) or char == "-" or char == ".":
+            continue
+        else: result = "Invalid"; break
+            
+    return result
 
-def verify_suffix(d_suffix):
+def verify_tld(tld):
+    result = "Invalid"
     valid_domains = ["com", "ca", "org", "net", "gov", "edu"]
     for domain in valid_domains:
-        pass
+        if tld == domain: result = "Valid"; break
+    return result
+
+def verify_forbiddeness(sld):
+    result = "Valid"
+    forbidden_domains = ["scam", "spam", "fakeemail", "trashmail", "pleasenotspam", 
+                       "therealtaylorswift", "sendmoney"]
+    for term in forbidden_domains:
+        if term in sld: result = "Forbidden"; break
+    return result
 
 def validate_email(email):
     # Add your implementation in here
-    code = "Valid"
+    result = "Valid"
     while True:
-        if email.count("@") != 1: code = "Invalid"; break
+        if email.count("@") != 1: result = "Invalid"; break
         
         first_split = email.split("@")
         local, domain = first_split[0], first_split[-1]
         
-        if verify_local(local) == "Invalid": code = "Invalid"; break
-        if email.count(".") == 0: code = "Invalid"; break
+        if verify_local(local) == "Invalid": result = "Invalid"; break
+        if domain.count(".") < 1: result = "Invalid"; break
 
         second_split = domain.split(".")
-        top_lvl_d, d_suffix = second_split[0], second_split[-1]
+        second_lvl_d, top_lvl_d = second_split[0], second_split[-1]
 
-        if verify_suffix(d_suffix) == "Invalid": break
+        if verify_tld(top_lvl_d) == "Invalid": result = "Invalid"; break
+        if verify_forbiddeness(second_lvl_d) == "Forbidden": result = "Forbidden"; break
 
         break
 
-    print(code)
+    print(result)
 
 def main():
     # Takes in the input and stores the email addresses in a list
