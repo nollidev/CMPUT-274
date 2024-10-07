@@ -9,8 +9,9 @@ def verify_local(local):
     result = "Valid"
     for char in local:
         number = ord(char.lower())
-        # the range of numbers are all the lowercase numbers in ascii
-        if (number >= 97 and number <= 122) or char == "-" or char == ".":
+        # the first range of numbers are all the lowercase numbers in ascii
+        # the second range of numbers are all the numbers and permitted punctuation
+        if (number >= 97 and number <= 122) or (number >= 45 and number <= 57 and not number == 47):
             continue
         else: result = "Invalid"; break
             
@@ -28,7 +29,7 @@ def verify_forbiddeness(sld):
     forbidden_domains = ["scam", "spam", "fakeemail", "trashmail", "pleasenotspam", 
                        "therealtaylorswift", "sendmoney"]
     for term in forbidden_domains:
-        if term in sld: result = "Forbidden"; break
+        if term == sld: result = "Forbidden"; break
     return result
 
 def validate_email(email):
