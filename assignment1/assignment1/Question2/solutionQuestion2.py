@@ -18,8 +18,9 @@ def clean_input_string(string):
 def reverse_string(string):
     newString = ""
     splicedString = string.split()
-    for word in splicedString:
-        newString += splicedString[-splicedString.index(word)-1] + " "
+    for i in range(len(splicedString)):
+        if newString != "": newString += " "
+        newString += splicedString[~i]
     return newString
 
 #Input: The output from reverse_string()
