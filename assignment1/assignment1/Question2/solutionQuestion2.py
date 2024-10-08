@@ -26,9 +26,12 @@ def reverse_string(string):
 #Output: A string with all the duplicate occurrences of words removed. Only the first occurrence will remain in the string
 def remove_duplicates(string):
     newString = ""
+    string_list = string.split()
+    for word in string_list:
+        if newString != "": newString += " "
+        if word not in newString: newString += word
+    return newString        
     
-    pass
-
 #Input: The output from remove_duplicates()
 #Output: The median length of the words in the input string. This function must return an integer, more specifically the floor value.
 def calculate_median_length(string):
