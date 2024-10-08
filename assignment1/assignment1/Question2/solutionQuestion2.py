@@ -43,6 +43,7 @@ def calculate_median_length(string):
     medianList = []
     stringList = string.split()
     for word in stringList: medianList.append(len(word))
+    medianList.sort()
     size = len(medianList)
     if size % 2 == 0: median = (medianList[(size + 1) // 2] + medianList[(size // 2)]) // 2
     else: median = medianList[(size + 1) // 2]
