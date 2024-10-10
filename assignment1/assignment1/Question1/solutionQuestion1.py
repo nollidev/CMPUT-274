@@ -4,53 +4,64 @@
 # operating system: Fedora Linux
 # python version: 3.12.6
 
+# "local" is the local address of the email
 def verify_local(local):
+    result = True # algorithm assumes innocent until proven guilty
+    
     # for each character, evaluate if it's a permitted character
-    result = "Valid"
     for char in local:
         number = ord(char.lower())
+        
         # the first range of numbers are all the lowercase numbers in ascii
         # the second range of numbers are all the numbers and permitted punctuation
+        # refer to an ascii reference table for clarity
         if (number >= 97 and number <= 122) or (number >= 45 and number <= 57 and not number == 47):
-            continue
-        else: result = "Invalid"; break
+            continue # affirm valid character, move on to next character
+        else: result = False; break # does not evaluate further if condition met
             
     return result
 
+# "tld" refers to the top-level domain
 def verify_tld(tld):
-    result = "Invalid"
-    valid_domains = ["com", "ca", "org", "net", "gov", "edu"]
-    for domain in valid_domains:
-        if tld == domain: result = "Valid"; break
+    result = False # algorithm assumes guilty until proven innocent
+    validDomains = ["com", "ca", "org", "net", "gov", "edu"]
+    
+    for domain in validDomains:
+        if tld == domain: result = True; break # does not evaluate further
+    
     return result
 
+# "sld" refers to the second-level domain
+# if true, string is forbidden
 def verify_forbiddeness(sld):
-    result = "Valid"
-    forbidden_domains = ["scam", "spam", "fakeemail", "trashmail", "pleasenotspam", 
+    result = False # innocent until proven guilty
+    forbiddenDomains = ["scam", "spam", "fakeemail", "trashmail", "pleasenotspam", 
                        "therealtaylorswift", "sendmoney"]
-    for term in forbidden_domains:
-        if term == sld: result = "Forbidden"; break
+    
+    for term in forbiddenDomains:
+        if term == sld: result = True; break # does not evaluate further
+    
     return result
 
 def validate_email(email):
-    # Add your implementation in here
-    result = "Valid"
-    while True:
-        if email.count("@") != 1: result = "Invalid"; break
+    result = "Valid" # innocent until proven guilty
+    
+    while True: # run until guilt assigned or analysis complete
+        if email.count("@") != 1: result = "Invalid"; break # must contain exactly one "@"
         
-        first_split = email.split("@")
-        local, domain = first_split[0], first_split[-1]
+        firstSplit = email.split("@")
+        local, domain = firstSplit[0], firstSplit[-1]
         
-        if verify_local(local) == "Invalid": result = "Invalid"; break
-        if domain.count(".") < 1: result = "Invalid"; break
+        if verify_local(local) == False: result = "Invalid"; break
+        if domain.count(".") < 1: result = "Invalid"; break # must contain at least one "."
 
-        second_split = domain.split(".")
-        second_lvl_d, top_lvl_d = second_split[0], second_split[-1]
+        secondSplit = domain.split(".")
+        topLvlDomain, secondLvlDomain = secondSplit[-1], secondSplit[0]
 
-        if verify_tld(top_lvl_d) == "Invalid": result = "Invalid"; break
-        if verify_forbiddeness(second_lvl_d) == "Forbidden": result = "Forbidden"; break
+        if verify_tld(topLvlDomain) == False: result = "Invalid"; break
+        if verify_forbiddeness(secondLvlDomain) == True: result = "Forbidden"; break
 
-        break
+        break # if program reaches this point, email is valid
 
     print(result)
 
@@ -61,8 +72,6 @@ def main():
     # Validate each email here
     for email in emails:
         validate_email(email)
-        # print(email)
-    # print(emails)
 
 if __name__ == "__main__":
     main()
