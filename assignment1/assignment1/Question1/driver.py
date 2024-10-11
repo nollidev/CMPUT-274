@@ -5,11 +5,11 @@ import subprocess
 import platform
 
 # Get the folder paths
-inputFolder = os.path.join(os.getcwd(), "assignment1/assignment1/Question1/", "Input") # make sure to remove the second param upon submission
-expectedFolder = os.path.join(os.getcwd(), "assignment1/assignment1/Question1/", "Expected") # this one too
+inputFolder = os.path.join(os.getcwd(), "Input") # make sure to remove the second param upon submission
+expectedFolder = os.path.join(os.getcwd(), "Expected") # this one too
 outputFolder = os.path.join(os.getcwd(), "Output")
 errorsFolder = os.path.join(os.getcwd(), "Error")
-solutionPath = os.path.join(os.getcwd(), "assignment1/assignment1/Question1/", "solutionQuestion1.py") # this one too
+solutionPath = os.path.join(os.getcwd(), "solutionQuestion1.py") # this one too
 
 if not os.path.exists(outputFolder):
     os.mkdir(outputFolder)
