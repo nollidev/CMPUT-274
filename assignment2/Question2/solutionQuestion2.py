@@ -1,12 +1,27 @@
-# Name: <replace with your name>
-# ccid: <replace with your ccid>
-# studentId: <replace with your student id>
-# operating system: <replace with yours>
-# python version: <replace with your python version>
+# Name: Nathan Edillon
+# ccid: nedillon
+# studentId: 1826864
+# operating system: Fedora Linux
+# python version: 3.12.6
 
 def simplify_path(path):
     # Add your implementation here
-    pass
+    pathList = list(path)
+    path = ""
+    stack = []
+    for char in range(len(pathList)):
+        stack.append(pathList[char])
+        if pathList[char] == "/" and char + 1 == len(pathList): stack.pop()
+        elif pathList[char] == "/" and pathList[char + 1] == "." and pathList[char + 2] == ".": 
+            if stack.count("/") > 1: stack.pop(); stack.reverse()
+            lastSlashIndex = stack.index("/"); stack.reverse()
+            lastSlashIndex = len(stack) + ~lastSlashIndex
+            while len(stack) > lastSlashIndex:
+                stack.pop()
+        elif pathList[char] == "/" and (pathList[char + 1] == "/" or pathList[char + 1] == ".") or pathList[char] == ".": stack.pop()
+    for char in stack:
+        path += char
+    return path
     
 def main():
     # Takes Unix path as input
