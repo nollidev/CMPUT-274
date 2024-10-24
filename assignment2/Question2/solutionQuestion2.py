@@ -11,7 +11,8 @@ def simplify_path(path):
     stack = []
     for char in range(len(pathList)):
         stack.append(pathList[char])
-        if pathList[char] == "/" and char + 1 == len(pathList): stack.pop()
+        if pathList[char] == "/" and char + 1 == len(pathList): 
+            if char != 0: stack.pop()
         elif pathList[char] == "/" and pathList[char + 1] == "." and pathList[char + 2] == ".": 
             if stack.count("/") > 1: stack.pop(); stack.reverse()
             lastSlashIndex = stack.index("/"); stack.reverse()
