@@ -9,20 +9,22 @@ def simplify_path(path):
     pathList = list(path)
     path = ""
     stack = []
-    for char in range(len(pathList)):
-        stack.append(pathList[char])
-        if pathList[char] == "/" and char + 1 == len(pathList): 
-            if char != 0: stack.pop()
-        elif pathList[char] == "/" and pathList[char + 1] == "." and pathList[char + 2] == ".": 
-            if stack.count("/") > 1: stack.pop(); stack.reverse()
-            lastSlashIndex = stack.index("/"); stack.reverse()
-            lastSlashIndex = len(stack) + ~lastSlashIndex
-            while len(stack) > lastSlashIndex:
-                stack.pop()
-        elif pathList[char] == "/" and (pathList[char + 1] == "/" or pathList[char + 1] == ".") or pathList[char] == ".": stack.pop()
-    for char in stack:
-        path += char
-    return path
+    if pathList[0] == "/":
+        for char in range(len(pathList)):
+            stack.append(pathList[char])
+            if pathList[char] == "/" and char + 1 == len(pathList): 
+                if stack.count("/") > 1: stack.pop()
+            elif pathList[char] == "/" and pathList[char + 1] == "." and pathList[char + 2] == ".": 
+                if stack.count("/") > 1: stack.pop(); stack.reverse()
+                lastSlashIndex = stack.index("/"); stack.reverse()
+                lastSlashIndex = len(stack) + ~lastSlashIndex
+                while len(stack) > lastSlashIndex:
+                    stack.pop()
+            elif pathList[char] == "/" and (pathList[char + 1] == "/" or pathList[char + 1] == ".") or pathList[char] == ".": stack.pop()
+        for char in stack:
+            path += char
+        return path
+    else: return "Invalid Path"
     
 def main():
     # Takes Unix path as input

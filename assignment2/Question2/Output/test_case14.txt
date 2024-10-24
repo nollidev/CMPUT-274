@@ -1,1 +1,1 @@
-None
+/var/www/nginx
