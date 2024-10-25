@@ -6,23 +6,22 @@
 
 def simplify_path(path):
     # Add your implementation here
-    pathList = list(path)
-    path = ""
     stack = []
-    if pathList[0] == "/": # when the provided path is valid
+    if path[0] == "/": # when the provided path is valid
         
-        # analyze each character in the pathList and pop accordingly
-        for char in range(len(pathList)):
-            stack.append(pathList[char])
+        # analyze each character in the path and pop accordingly
+        for char in range(len(path)):
+            stack.append(path[char])
             
             # case: for slashes that are at the end of the path
-            ## it's important this if statement executes first so that later
-            ## cases assuming there are more characters don't cause an exception
-            if pathList[char] == "/" and char + 1 == len(pathList): 
+            ## it's important this if statement executes first so that later cases
+            ## that assume there are more characters don't cause an exception
+            if path[char] == "/" and char + 1 == len(path): 
                 if stack.count("/") > 1: stack.pop()
             
             # case: for slashes followed by two periods
-            elif pathList[char] == "/" and pathList[char + 1] == "." and pathList[char + 2] == "." and stack.count("/") > 1: 
+            ## removes slash, finds index of previous slash, pops until previous slash removed
+            elif path[char] == "/" and path[char + 1] == "." and path[char + 2] == "." and stack.count("/") > 1: 
                 stack.pop(); stack.reverse()
                 lastSlashIndex = stack.index("/"); stack.reverse()
                 lastSlashIndex = len(stack) + ~lastSlashIndex
@@ -30,13 +29,14 @@ def simplify_path(path):
                     stack.pop()
             
             # cases: for slashes followed by another slash or a period, or a period
-            elif pathList[char] == "/" and (pathList[char + 1] == "/" or pathList[char + 1] == ".") or pathList[char] == ".": 
+            elif path[char] == "/" and (path[char + 1] == "/" or path[char + 1] == ".") or path[char] == ".": 
                 stack.pop()
         
         # append the approved stack to the string
+        simplified_path = ""
         for char in stack:
-            path += char
-        return path
+            simplified_path += char
+        return simplified_path
     
     else: return "Invalid Path"
     
