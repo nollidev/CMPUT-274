@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/home/nattyeddy/Documents/School/Uni Homework/Second Year/CMPUT-274/assignment3/Question1/solutionQuestion1.py", line 35, in <module>
+    main()
+    ~~~~^^
+  File "/home/nattyeddy/Documents/School/Uni Homework/Second Year/CMPUT-274/assignment3/Question1/solutionQuestion1.py", line 31, in main
+    read_tree().print_tree()
+    ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'print_tree'
