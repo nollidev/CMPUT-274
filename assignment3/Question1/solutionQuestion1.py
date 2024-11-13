@@ -22,9 +22,15 @@ def read_tree():
         The root of the tree as a TreeNode object
     """
     # TODO: Write your code for read_tree() here!
-    print("Hello World!")
-    
+    tree_criteria = input().split()
+    length_of_tree, max_nodes = tree_criteria[0], tree_criteria[1]
+    tree_array = input().split()
+    print(tree_array)
 
+    tree = TreeNode(tree_array[0])
+    for node in tree_array:
+        tree.add_child(node)
+    return tree
 
 def main():
     # Do not modify
