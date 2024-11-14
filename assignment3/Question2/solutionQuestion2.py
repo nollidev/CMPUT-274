@@ -1,8 +1,8 @@
-# Name: <replace with your name>
-# ccid: <replace with your ccid>
-# studentId: <replace with your student id>
-# operating system: <replace with yours >
-# python version: <replace with your python version>
+# Name: Nathan Edillon
+# ccid: nedillon
+# studentId: nedillon
+# operating system: Fedora Linux 41
+# python version: 3.13.0
 
 # Starter Code from https://www.geeksforgeeks.org/python-linked-list/
 class Node:
@@ -91,30 +91,33 @@ class LinkedList:
             print(current_node.data, end=" ")
             current_node = current_node.next
         print()
-           
-    def removeAtIndex(self, index):
-        position = 0
-        current_node = self.head
-        
+    
     # Removes all duplicate nodes from the linked list
     def remove_duplicates(self):
         current_node = self.head
-        position = 0
-        duplicates = [current_node.data]
-        next_node = current_node.next
+        duplicates = [current_node.data] # starting with first value in list
         while(current_node.next):
-            if current_node.next.data not in duplicates:
-                duplicates.append(current_node.next.data)
+            if current_node.next.data not in duplicates: # record dupes then cycle
+                duplicates.append(current_node.next.data) 
                 current_node = current_node.next
             else:
-                current_node.next = current_node.next.next
+                current_node.next = current_node.next.next # reassign pointer to next next
 
     # Merges all nodes from llist2 into the linked list object, maintains sorted order
     def merge(self, llist2):
         current_node = self.head
-        while(current_node):
+        while(current_node.next):
             current_node = current_node.next
-        current_node.next = llist2.head 
+        current_node.next = llist2.head # append second list onto back of first list
+        
+        current_node = self.head
+        while(current_node.next):
+            if (current_node.data > current_node.next.data):
+                a, b = current_node.data, current_node.next.data # assign a > b
+                current_node.data, current_node.next.data = b, a # then swap a < b
+                current_node = self.head # reset list traversal
+            else:
+                current_node = current_node.next
 
 def main():
     llist_nodes = input().split()
