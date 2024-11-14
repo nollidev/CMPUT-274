@@ -91,17 +91,31 @@ class LinkedList:
             print(current_node.data, end=" ")
             current_node = current_node.next
         print()
-            
+           
+    def removeAtIndex(self, index):
+        position = 0
+        current_node = self.head
+        
     # Removes all duplicate nodes from the linked list
     def remove_duplicates(self):
-        # TODO: Your Implementation Here
-        pass
-        
+        current_node = self.head
+        position = 0
+        duplicates = [current_node.data]
+        next_node = current_node.next
+        while(current_node.next):
+            if current_node.next.data not in duplicates:
+                duplicates.append(current_node.next.data)
+                current_node = current_node.next
+            else:
+                current_node.next = current_node.next.next
+
     # Merges all nodes from llist2 into the linked list object, maintains sorted order
     def merge(self, llist2):
-        # TODO: Your Implementation Here
-        pass
-        
+        current_node = self.head
+        while(current_node):
+            current_node = current_node.next
+        current_node.next = llist2.head 
+
 def main():
     llist_nodes = input().split()
     if llist_nodes[0] == 'duplicate':

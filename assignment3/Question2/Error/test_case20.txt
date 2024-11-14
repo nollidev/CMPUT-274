@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/home/nattyeddy/Documents/School/Uni Homework/Second Year/CMPUT-274/assignment3/Question2/solutionQuestion2.py", line 139, in <module>
+    main()
+    ~~~~^^
+  File "/home/nattyeddy/Documents/School/Uni Homework/Second Year/CMPUT-274/assignment3/Question2/solutionQuestion2.py", line 135, in main
+    llist1.merge(llist2)
+    ~~~~~~~~~~~~^^^^^^^^
+  File "/home/nattyeddy/Documents/School/Uni Homework/Second Year/CMPUT-274/assignment3/Question2/solutionQuestion2.py", line 117, in merge
+    current_node.next = llist2.head
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'next' and no __dict__ for setting new attributes
