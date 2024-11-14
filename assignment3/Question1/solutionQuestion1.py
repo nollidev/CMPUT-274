@@ -5,6 +5,16 @@
 # python version: 3.12.6
 from treenode import TreeNode
 
+def construct_tree(length_of_tree, max_children, iterable, iteration=0, root=None): 
+    while iteration < length_of_tree:
+        if root == None:
+            root = TreeNode(next(iterable)); iteration += 1; continue
+        elif len(root.get_children()) != max_children:
+            root.add_child(TreeNode(next(iterable))); iteration += 1; continue
+        else:
+            for child in root.get_children():
+                construct_tree(length_of_tree, max_children, iterable, iteration, child)
+    return root
 
 def read_tree():
     """Construct a tree from standard input
@@ -25,12 +35,8 @@ def read_tree():
     tree_criteria = input().split()
     length_of_tree, max_nodes = tree_criteria[0], tree_criteria[1]
     tree_array = input().split()
-    print(tree_array)
-
-    tree = TreeNode(tree_array[0])
-    for node in tree_array:
-        tree.add_child(node)
-    return tree
+    # print(tree_array)
+    return construct_tree(length_of_tree, max_children, iter(tree_array))
 
 def main():
     # Do not modify
