@@ -3,9 +3,9 @@ def permutations(n):
     if n == 1: return [[1]]
    
     for i in range(n):
-        for perm in permutations(n-1):
-            perm.insert(i, n)
-            permutationsList.append(perm)
+        for permutation in permutations(n-1):
+            permutation.insert(i, n)
+            permutationsList.append(permutation)
 
     return permutationsList
 
