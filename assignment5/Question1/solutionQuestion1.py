@@ -1,8 +1,8 @@
-# Name: <replace with your name>
-# ccid: <replace with your ccid>
-# studentId: <replace with your student id>
-# operating system: <replace with your os>
-# python version: <replace with your python version>
+# Name: Nathan Edillon
+# ccid: nedillon
+# studentId: 1826864
+# operating system: Windows 10
+# python version: 3.12.6
 
 def min_coins(coins, S):
     # Your implementation here
